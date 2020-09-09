@@ -138,6 +138,12 @@ void hagl_hal_put_pixel(int16_t x0, int16_t y0, color_t color)
     *ptr = color;
 }
 
+color_t * hagl_hal_get_pixel(uint16_t x0, uint16_t y0)
+{
+    color_t *ptr = (color_t *) (fb.buffer + fb.pitch * y0 + (fb.depth / 8) * x0);
+    return ptr;
+}
+
 void hagl_hal_blit(uint16_t x0, uint16_t y0, bitmap_t *src)
 {
     bitmap_blit(x0, y0, src, &fb);
@@ -163,6 +169,11 @@ void hagl_hal_vline(int16_t x0, int16_t y0, uint16_t height, color_t color)
         *ptr = color;
         ptr += fb.pitch / (fb.depth / 8);
     }
+}
+
+bitmap_t* hagl_hal_get_fb()
+{
+    return &fb;
 }
 
 #endif /* #ifdef CONFIG_HAGL_HAL_USE_TRIPLE_BUFFERING */
