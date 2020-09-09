@@ -71,6 +71,15 @@ extern "C" {
 void hagl_hal_put_pixel(int16_t x0, int16_t y0, color_t color);
 
 /**
+ * Get a pixel
+ *
+ * @param x0 X coordinate
+ * @param y0 Y coorginate
+ * @return color RGB565 color
+ */
+color_t* hagl_hal_get_pixel(uint16_t x0, uint16_t y0);
+
+/**
  * Initialize the HAL
  *
  * @return pointer to he backbuffer bitmap
@@ -119,6 +128,12 @@ void hagl_hal_vline(int16_t x0, int16_t y0, uint16_t h, color_t color);
  * Flush back buffer to the display
  */
 void hagl_hal_flush();
+
+/**
+ * return the address of the frame buffer bitmap
+ */
+bitmap_t* hagl_hal_get_fb();
+
 
 #ifdef __cplusplus
 }
