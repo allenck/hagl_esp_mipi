@@ -125,6 +125,12 @@ void hagl_hal_put_pixel(int16_t x0, int16_t y0, color_t color)
 #endif /* CONFIG_HAGL_HAL_LOCK_WHEN_FLUSHING */
 }
 
+color_t * hagl_hal_get_pixel(uint16_t x0, uint16_t y0)
+{
+    color_t *ptr = (color_t *) (fb.buffer + fb.pitch * y0 + (fb.depth / 8) * x0);
+    return ptr;
+}
+
 void hagl_hal_blit(uint16_t x0, uint16_t y0, bitmap_t *src)
 {
 #ifdef CONFIG_HAGL_HAL_LOCK_WHEN_FLUSHING
@@ -174,6 +180,11 @@ void hagl_hal_vline(int16_t x0, int16_t y0, uint16_t height, color_t color)
 #ifdef CONFIG_HAGL_HAL_LOCK_WHEN_FLUSHING
     xSemaphoreGive(mutex);
 #endif /* CONFIG_HAGL_HAL_LOCK_WHEN_FLUSHING */
+}
+
+bitmap_t* hagl_hal_get_fb()
+{
+    return &fb;
 }
 
 #endif /* CONFIG_HAGL_HAL_USE_DOUBLE_BUFFERING */
