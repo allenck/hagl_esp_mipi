@@ -1,5 +1,5 @@
 idf_component_register(
-    SRCS "src/hagl_hal_single.c" "src/hagl_hal_double.c" "src/hagl_hal_triple.c" "src/mipi_display.c"
+    SRCS "src/bitmap.c" "src/clip.c" "src/fontx.c" "src/fontx2.c" "src/hagl.c" "src/hsl.c" "src/rgb565.c" "src/rgb888.c" "src/tjpgd.c"
     INCLUDE_DIRS "./include"
-    REQUIRES hagl
+    REQUIRES hagl_hal
 )
